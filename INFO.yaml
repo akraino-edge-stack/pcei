@@ -1,0 +1,53 @@
+---
+project: 'pcei'
+project_creation_date: '2020-04-30'
+project_category: ''
+lifecycle_state: 'Incubation'
+project_lead: &akraino_pcei_ptl
+    - name: 'Oleg Berzin'
+      email: 'oberzin@equinix.com'
+      company: 'Equinix'
+      id: 'zirben'
+      timezone: 'Unknown/Unknown'
+dprimary_contact: *akraino_pcei_ptl
+issue_tracking:
+    type: 'jira'
+    url: 'https://jira.akraino.org/projects/'
+    key: 'pcei'
+mailing_list:
+    type: 'groups.io'
+    url: 'technical-discuss@lists.akraino.org'
+    tag: '[]'
+realtime_discussion:
+    type: 'irc'
+    server: 'freenode.net'
+    channel: '#akraino'
+meetings:
+    - type: 'gotomeeting+irc'
+      agenda: 'https://wiki.akraino.org/display/'
+      url: ''
+      server: 'freenode.net'
+      channel: '#akraino'
+      repeats: ''
+      time: ''
+repositories:
+    - pcei
+committers:
+    - <<: *akraino_pcei_ptl
+    - name: 'Tina Tsou'
+      email: 'tina.tsou@arm.com'
+      company: 'ARM'
+      id: 'tinatsou'
+      timezone: 'Unknown/Unknown'
+    - name: 'Jian Li'
+      email: 'lijianyj@chinamobile.com'
+      company: 'China Mobile Tech USA'
+      id: 'cmtiCA'
+      timezone: 'Unknown/Unknown'
+tsc:
+    # yamllint disable rule:line-length
+    approval: 'https://wiki.akraino.org/pages/viewpage.action?pageId=28967731'
+    changes:
+        - type: 'Addition'
+          name: 'Oleg Berzin'
+          link: 'https://wiki.akraino.org/pages/viewpage.action?pageId=28967778'
