@@ -1,4 +1,5 @@
 # UUID                                                                  	Group Name
 #
 0706f97cf3b2243094a8f24452092769b1065db0                                	GitHub Replication
+8227a69ffed32df7febf48f3344465b78e2181e7                                	saml/akraino-gerrit-pcei-committers
 ldap:cn=akraino-gerrit-pcei-committers,ou=Groups,dc=freestandards,dc=org	ldap/akraino-gerrit-pcei-committers
