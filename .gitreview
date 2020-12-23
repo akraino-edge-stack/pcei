@@ -1,7 +1,6 @@
-
-        [gerrit]
-        host=gerrit.akraino.org
-        port=29418
-        project=pcei
-        defaultbranch=master
+[gerrit]
+host=gerrit.akraino.org
+port=29418
+project=pcei
+defaultbranch=master
         
