@@ -1,0 +1,20 @@
+FROM ubuntu:xenial
+
+WORKDIR /app
+
+RUN apt-get update && \
+   apt-get install -y --no-install-recommends libcurl4-openssl-dev python-pip libboost-python-dev libpython-dev && \
+   rm -rf /var/lib/apt/lists/* 
+
+RUN pip install --upgrade pip
+COPY requirements.txt ./
+RUN pip install -r requirements.txt
+
+COPY . .
+
+RUN useradd -ms /bin/bash moduleuser
+USER moduleuser
+
+EXPOSE 50005
+# CMD [ "python", "-u", "./main.py" ]
+CMD [ "python", "-u", "./test.py" ]
