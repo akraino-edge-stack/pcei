@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pceilocapi.fullname" . }}
+  labels:
+    release: {{ .Release.Name }}
+    app: {{ include "pceilocapi.name" . }}
+    chart: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "pceilocapi.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "pceilocapi.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.pceilocapirepo }}:{{ .Values.image.pceilocapitag }}"
+        envFrom:
+        - configMapRef:
+            name: {{ include "pceilocapi.name" . }}-configmap
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        tty: true
+        stdin: true
+        securityContext:
+          privileged: true
