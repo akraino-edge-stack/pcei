@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "awsggc.name" .}}-configmap
+data:
+  config.json: |-
+    {
+      "coreThing" : {
+        "caPath" : "root.ca.pem",
+        "certPath" : "cert.pem",
+        "keyPath" : "private.key",
+        "thingArn" : "arn:aws:iot:us-west-2:XXXXX",
+        "iotHost" : "XXXXX-ats.iot.us-west-2.amazonaws.com",
+        "ggHost" : "greengrass-ats.iot.us-west-2.amazonaws.com",
+        "keepAlive" : 600
+      },
+      "runtime" : {
+        "cgroup" : {
+          "useSystemd" : "yes"
+        }
+      },
+      "managedRespawn" : false,
+      "crypto" : {
+        "principals" : {
+          "SecretsManager" : {
+            "privateKeyPath" : "file:///greengrass/keys/private.key"
+          },
+          "IoTCertificate" : {
+            "privateKeyPath" : "file:///greengrass/keys/private.key",
+            "certificatePath" : "file:///greengrass/certs/cert.pem"
+          }
+        },
+        "caPath" : "file:///greengrass/ca/root.ca.pem"
+      }
+    }
+
+

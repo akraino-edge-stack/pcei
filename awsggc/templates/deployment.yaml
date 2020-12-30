@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "awsggc.fullname" . }}
+  labels:
+    release: {{ .Release.Name }}
+    app: {{ include "awsggc.name" . }}
+    chart: {{ .Chart.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "awsggc.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "awsggc.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.awsggcrepo }}:{{ .Values.image.awsggctag }}"
+        envFrom:
+        - configMapRef:
+            name: {{ include "awsggc.name" . }}-configmap
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "/greengrass/ggc/core/greengrassd start"]
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        tty: true
+        stdin: true
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: config
+          mountPath: "/greengrass/config/"
+        - name: cert
+          mountPath: "/greengrass/certs/"
+        - name: privkey
+          mountPath: "/greengrass/keys/"
+        - name: rootca
+          mountPath: "/greengrass/ca/"
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "awsggc.name" . }}-configmap
+        - name: cert
+          configMap:
+            name: awsggc-cert
+        - name: privkey
+          configMap:
+            name: awsggc-privkey
+        - name: rootca
+          configMap:
+            name: awsggc-rootca
