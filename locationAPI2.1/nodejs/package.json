@@ -1,0 +1,20 @@
+{
+  "name": "etsi-gs-mec-013-location-api",
+  "version": "2.1.1-oas3",
+  "description": "The ETSI MEC ISG MEC013 Location API described using OpenAPI.",
+  "main": "index.js",
+  "scripts": {
+	"prestart": "npm install",
+	"start": "node index.js"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "connect": "^3.2.0",
+    "js-yaml": "^3.3.0",
+    "oas3-tools": "^2.2.3"
+  }
+}
